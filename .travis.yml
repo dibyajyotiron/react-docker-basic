@@ -6,3 +6,16 @@ before_install:
 
 script:
   - docker run dibyajyoti/react-docker-basic npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "ap-southeast-1"
+  app: react-docker-basic
+  env: "ReactDockerBasic-env"
+  bucket_name: "elasticbeanstalk-ap-southeast-1-752101103034"
+  bucket_path: "react-docker-basic"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
